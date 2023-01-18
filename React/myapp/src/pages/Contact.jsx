@@ -85,7 +85,7 @@ const Contact = () => {
                 isSubmitting,
 
               }) => (
-                <form onSubmit={handleSubmit} action="" method="post" role="form" className="php-email-form">
+                <form onSubmit={handleSubmit} className="php-email-form">
                   <div className="row">
                     <div className="form-group col-md-6">
                       <label htmlFor="name" >Your Name</label>
