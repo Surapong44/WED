@@ -1,21 +1,18 @@
 import React from "react";
-import { Formik } from 'formik';
+import { Formik, Form, ErrorMessage } from "formik";
 import { ValidateFormContact } from "./validate-form/ValidateContact";
 
 const Contact = () => {
-
   return (
     <section id="contact" className="contact">
-      <div className="container" >
-
+      <div className="container">
         <div className="section-title">
           <h2>Contact Us</h2>
           <p>Contact us the get started</p>
         </div>
 
         <div className="row">
-
-          <div className="col-lg-5 d-flex align-items-stretch" >
+          <div className="col-lg-5 d-flex align-items-stretch">
             <div className="info">
               <div className="address">
                 <i className="bi bi-geo-alt"></i>
@@ -37,7 +34,6 @@ const Contact = () => {
 
               {/* <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe> */}
             </div>
-
           </div>
 
           {/* <div className="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" > */}
@@ -71,9 +67,12 @@ const Contact = () => {
 
           <div className="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
             <Formik
-              initialValues={{ name: '', email: '', subject: '', massage: '' }}
+              initialValues={{ name: "", email: "", subject: "", massage: "" }}
               validationSchema={ValidateFormContact}
-              onSubmit={(values, { setSubmitting }) => {}}
+              onSubmit={(values) => {
+                let data = { ...values };
+                console.log("data:" + JSON.stringify(data));
+              }}
             >
               {({
                 values,
@@ -81,45 +80,53 @@ const Contact = () => {
                 touched,
                 handleChange,
                 handleBlur,
-                handleSubmit,
                 isSubmitting,
-
               }) => (
-                <form onSubmit={handleSubmit} className="php-email-form">
+                <Form className="php-email-form">
                   <div className="row">
                     <div className="form-group col-md-6">
-                      <label htmlFor="name" >Your Name</label>
+                      <label htmlFor="name">ชื่อ-นามสกุล</label>
                       <input
-                        placeholder="Your Name"
-                        className="form-control"
+                        placeholder="ชื่อ-นามสกุล"
+                        className={
+                          "form-control" +
+                          (errors.name && touched.name ? " is-invalid" : "")
+                        }
                         type="text"
                         name="name"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.name}
+                      />
+                      <ErrorMessage name="name" component="div" className="invalid-feedback"/>
+                    </div>
+
+                    <div className="form-group col-md-6 mt-3 mt-md-0">
+                      <label htmlFor="name">อีเมล</label>
+                      <input
+                        className={
+                          "form-control" +
+                          (errors.email && touched.email ? " is-invalid" : "")
+                        }
+                        type="text"
+                        name="email"
+                        placeholder="อีเมล"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.email}
                       />
                     </div>
 
-                    <div className="form-group col-md-6 mt-3 mt-md-0">
-                      <label htmlFor="name">Your Email</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="email"
-                        placeholder="Your Email"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                      />
-                    </div>
-
                     <div className="form-group row-5 mt-3 mt-md-0">
-                      <label htmlFor="name">Your Subject</label>
+                      <label htmlFor="name">เรื่อง</label>
                       <input
-                        className="form-control"
+                        className={
+                          "form-control" +
+                          (errors.subject && touched.subject ? " is-invalid" : "")
+                        }
                         type="text"
                         name="subject"
-                        placeholder="Your Subject"
+                        placeholder="เรื่อง"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.subject}
@@ -127,35 +134,34 @@ const Contact = () => {
                     </div>
 
                     <div className="form-group row-5 mt-3 mt-md-0">
-                      <label htmlFor="name">Your Massage</label>
+                      <label htmlFor="name">รายละเอียด</label>
                       <textarea
-                        className="form-control"
+                        className={
+                          "form-control" +
+                          (errors.massage && touched.massage ? " is-invalid" : "")
+                        }
                         type="text"
                         rows={6}
                         name="massage"
-                        placeholder="Your Massage"
+                        placeholder="รายละเอียด"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.massage}
                       />
                     </div>
-
                   </div>
-                  <button type="submit" disabled={isSubmitting}>
-                    Submit
+                  <button type="submit" >
+                    บันทึก
                   </button>
-
-                </form>
+                </Form>
               )}
             </Formik>
           </div>
-
         </div>
-
       </div>
       {/* </div> */}
     </section>
-  )
-}
+  );
+};
 
 export default Contact;
