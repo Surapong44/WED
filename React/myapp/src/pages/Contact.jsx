@@ -73,6 +73,7 @@ const Contact = () => {
                 subject: "",
                 massage: "",
                 phoneNumber: "",
+                // status: "",
               }}
               validationSchema={ValidateFormContact}
               onSubmit={(values) => {
@@ -91,11 +92,11 @@ const Contact = () => {
                 <Form className="php-email-form">
                   <div className="form-group col">
                     <label htmlFor="name">สถานภาพ: </label>
-                    <input type="radio" name="student" checked="checked" />
+                    <input type="radio" defaultChecked />
                     นักศึกษา
-                    <input type="radio" name="university-personnel" />
+                    <input type="radio" />
                     บุคลากรมหาวิทยาลัย
-                    <input type="radio" name="third-party" />
+                    <input type="radio" />
                     บุคคลภายนอก
                   </div>
 
@@ -171,7 +172,10 @@ const Contact = () => {
                     </div>
 
                     <div className="form-group row-5 mt-3 mt-md-0">
-                      <label htmlFor="name">เบอร์โทรศัพท์</label>
+                      <label htmlFor="name">
+                        เบอร์โทรศัพท์
+                        <p style={{ Color: "red" }}>(ใส่เฉพาะตัวเลข)</p>
+                      </label>
                       <input
                         className={
                           "form-control" +
@@ -179,7 +183,7 @@ const Contact = () => {
                             ? " is-invalid"
                             : "")
                         }
-                        type="text"
+                        type="number"
                         name="phoneNumber"
                         placeholder="เบอร์โทรศัพท์"
                         onChange={handleChange}

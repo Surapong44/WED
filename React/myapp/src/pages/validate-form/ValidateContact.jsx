@@ -10,5 +10,6 @@ export const ValidateFormContact = Yup.object({
     .required("กรุณากรอกอีเมล"),
   subject: Yup.string().required("กรุณาเรื่อง"),
   phoneNumber: Yup.string().required("กรุณาเบอร์โทรศัพท์"),
-  massage: Yup.string().required("กรุณารายละเอียด"),
+  // status: Yup.string().required("กรุณาเลือก"),
+
 });
