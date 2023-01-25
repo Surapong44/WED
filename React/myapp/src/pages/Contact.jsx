@@ -67,7 +67,13 @@ const Contact = () => {
 
           <div className="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
             <Formik
-              initialValues={{ name: "", email: "", subject: "", massage: "" }}
+              initialValues={{
+                name: "",
+                email: "",
+                subject: "",
+                massage: "",
+                phoneNumber: "",
+              }}
               validationSchema={ValidateFormContact}
               onSubmit={(values) => {
                 let data = { ...values };
@@ -80,11 +86,21 @@ const Contact = () => {
                 touched,
                 handleChange,
                 handleBlur,
-                isSubmitting,
+                setFieldValue,
               }) => (
                 <Form className="php-email-form">
+                  <div className="form-group col">
+                    <label htmlFor="name">สถานภาพ: </label>
+                    <input type="radio" name="student" checked="checked" />
+                    นักศึกษา
+                    <input type="radio" name="university-personnel" />
+                    บุคลากรมหาวิทยาลัย
+                    <input type="radio" name="third-party" />
+                    บุคคลภายนอก
+                  </div>
+
                   <div className="row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-6 mt-3 mt-md-0">
                       <label htmlFor="name">ชื่อ-นามสกุล</label>
                       <input
                         placeholder="ชื่อ-นามสกุล"
@@ -98,7 +114,11 @@ const Contact = () => {
                         onBlur={handleBlur}
                         value={values.name}
                       />
-                      <ErrorMessage name="name" component="div" className="invalid-feedback"/>
+                      <ErrorMessage
+                        name="name"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
 
                     <div className="form-group col-md-6 mt-3 mt-md-0">
@@ -111,9 +131,19 @@ const Contact = () => {
                         type="text"
                         name="email"
                         placeholder="อีเมล"
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          setFieldValue(
+                            "email",
+                            e.target.value.replace(/[^A-Za-z_.#?!@$%^&*0-9i]/g)
+                          );
+                        }}
                         onBlur={handleBlur}
                         value={values.email}
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="div"
+                        className="invalid-feedback"
                       />
                     </div>
 
@@ -122,7 +152,9 @@ const Contact = () => {
                       <input
                         className={
                           "form-control" +
-                          (errors.subject && touched.subject ? " is-invalid" : "")
+                          (errors.subject && touched.subject
+                            ? " is-invalid"
+                            : "")
                         }
                         type="text"
                         name="subject"
@@ -131,6 +163,34 @@ const Contact = () => {
                         onBlur={handleBlur}
                         value={values.subject}
                       />
+                      <ErrorMessage
+                        name="subject"
+                        component="div"
+                        className="invalid-feedback"
+                      />
+                    </div>
+
+                    <div className="form-group row-5 mt-3 mt-md-0">
+                      <label htmlFor="name">เบอร์โทรศัพท์</label>
+                      <input
+                        className={
+                          "form-control" +
+                          (errors.phoneNumber && touched.phoneNumber
+                            ? " is-invalid"
+                            : "")
+                        }
+                        type="text"
+                        name="phoneNumber"
+                        placeholder="เบอร์โทรศัพท์"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.phoneNumber}
+                      />
+                      <ErrorMessage
+                        name="phoneNumber"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
 
                     <div className="form-group row-5 mt-3 mt-md-0">
@@ -138,7 +198,9 @@ const Contact = () => {
                       <textarea
                         className={
                           "form-control" +
-                          (errors.massage && touched.massage ? " is-invalid" : "")
+                          (errors.massage && touched.massage
+                            ? " is-invalid"
+                            : "")
                         }
                         type="text"
                         rows={6}
@@ -148,11 +210,15 @@ const Contact = () => {
                         onBlur={handleBlur}
                         value={values.massage}
                       />
+                      <ErrorMessage
+                        name="massage"
+                        component="div"
+                        className="invalid-feedback"
+                      />
                     </div>
                   </div>
-                  <button type="submit" >
-                    บันทึก
-                  </button>
+                  <button type="submit">บันทึก</button>
+                  <button type="reset">ล้างข้อมูล</button>
                 </Form>
               )}
             </Formik>
