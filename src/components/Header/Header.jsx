@@ -3,8 +3,6 @@ import "./header.css";
 import logo from "../../assets/logo.png";
 import { Container, Row } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiOutlineShopping } from "react-icons/ai";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import userIcon from "../../assets/userIcon.png";
@@ -39,12 +37,12 @@ const Header = () => {
 
             <div className="navigation">
               <ul className="menu">
-                {nav__links.map((item,index) => (
+                {nav__links.map((item, index) => (
                   <li className="nav__item" key={index}>
                     <NavLink
                       to={item.path}
                       className={(navClass) =>
-                        navClass.isActive ? "nav__action" : ""
+                        navClass.isActive ? "nav__action" : "a"
                       }
                     >
                       {item.display}
@@ -56,17 +54,21 @@ const Header = () => {
 
             <div className="nav__icons">
               <span className="fav__icon">
-                <AiOutlineHeart />
+                <i class="ri-heart-line"></i>
                 <span className="badge">1</span>
               </span>
 
               <span className="cart__icon">
-                <AiOutlineShopping />
+                <i class="ri-shopping-bag-line"></i>
                 <span className="badge">1</span>
               </span>
 
               <span>
-                <motion.img whileTap={{scale: 1.2}} src={userIcon} alt="user" />
+                <motion.img
+                  whileTap={{ scale: 1.2 }}
+                  src={userIcon}
+                  alt="user"
+                />
               </span>
             </div>
 

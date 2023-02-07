@@ -1,8 +1,9 @@
 .service__item{
+    margin-top: 50px;
     padding: 20px;
     display: flex;
     align-items: center;
-    column-gap: 0.7rem;
+    column-gap: 0.5rem;
     border-radius: 5px;
     cursor: pointer;
 }

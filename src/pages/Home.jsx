@@ -27,7 +27,7 @@ const Home = () => {
                   Voluptatem quia obcaecati tempora culpa tempore a dolores
                   suscipit id. Omnis, asperiores.
                 </p>
-                <motion.button whileTap={{ scale: 1.2}} className="buy__btn"><Link to='/shop'>SHOP NOW</Link></motion.button>
+                <motion.button whileTap={{ scale: 1.2}} className="buy__btn"><Link className="a" to='/shop'>SHOP NOW</Link></motion.button>
               </div>
             </Col>
 
@@ -41,6 +41,15 @@ const Home = () => {
       </section>
 
       <Services/>
+      <section className="trending__products">
+        <Container>
+            <Row>
+              <Col lg = '12'>
+                <h2 className="section__title">Trending Products</h2> 
+              </Col>
+            </Row>
+        </Container>
+      </section>
     </Helmet>
   );
 };
