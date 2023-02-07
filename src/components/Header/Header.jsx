@@ -41,8 +41,8 @@ const Header = () => {
                   <li className="nav__item" key={index}>
                     <NavLink
                       to={item.path}
-                      className={(navClass) =>
-                        navClass.isActive ? "nav__action" : "a"
+                      className={(navclass) =>
+                        navclass.isActive ? "nav__action" : "a"
                       }
                     >
                       {item.display}
@@ -54,13 +54,13 @@ const Header = () => {
 
             <div className="nav__icons">
               <span className="fav__icon">
-                <i class="ri-heart-line"></i>
-                <span className="badge">1</span>
+                <i className="ri-heart-line"></i>
+                {/* <span className="badge">1</span> */}
               </span>
 
               <span className="cart__icon">
-                <i class="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <i className="ri-shopping-bag-line"></i>
+                {/* <span className="badge">1</span> */}
               </span>
 
               <span>
