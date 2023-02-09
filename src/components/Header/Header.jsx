@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./header.css";
 import logo from "../../assets/logo.png";
 import { Container, Row } from "reactstrap";
@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { motion } from "framer-motion";
 import userIcon from "../../assets/userIcon.png";
+
 
 const nav__links = [
   {
@@ -22,10 +23,31 @@ const nav__links = [
   },
 ];
 
-const Header = () => {
+export const Header = () => {
+  const hearderRef = useRef(null);
+
+  const stickyHeaderFunc = () => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        hearderRef.current.classList.add("sticky__hearder");
+      } else {
+        hearderRef.current.classList.remove("sticky__hearder");
+      }
+    });
+  };
+
+  useEffect(() => {
+    stickyHeaderFunc();
+
+    return () => window.removeEventListener("scroll", stickyHeaderFunc);
+  });
+
   return (
-    <header>
-      <Container className="header">
+    <header ref={hearderRef}>
+      <Container className="header" >
         <Row>
           <div className="nav__wrapper">
             <div className="logo">
@@ -83,5 +105,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

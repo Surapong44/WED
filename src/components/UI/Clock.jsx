@@ -15,6 +15,7 @@ export const Clock = () => {
 
       const now = new Date().getTime()
       const different = destination - now 
+      
 
       const days = Math.floor(different / (1000 * 60 * 60 * 24))
 

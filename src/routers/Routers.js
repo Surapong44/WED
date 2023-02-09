@@ -8,7 +8,7 @@ import Checkout from "../pages/Checkout";
 import Login from "../pages/Login";
 import Singup from "../pages/Singup";
 
-const Routers = () => {
+export const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to={"home"} />} />
@@ -23,4 +23,4 @@ const Routers = () => {
   );
 };
 
-export default Routers;
+
